@@ -30,23 +30,23 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    {Routers.map((item, index) => {
-                        if (item.path === '/') {
-                            return <Route key={index} path='/' exact render={() => (
-                                <Redirect to={'/home'}/>
-                            )}/>;
-                        }
-                        return <Route key={index} path={item.path} exact render={props =>
-                            !item.auth ? <item.component {...props} /> :
-                                token ? <item.component {...props} /> :
-                                    <Redirect to={{
-                                        pathname: '/login',
-                                        state: {from: props.location}
-                                    }}/>
-                        }/>;
-                    })}
-                    {/*<Route path="/" component={Container} />*/}
-                    {/*<Route path="/login" component={Login} />*/}
+                    {/*{Routers.map((item, index) => {*/}
+                        {/*if (item.path === '/') {*/}
+                            {/*return <Route key={index} path='/' exact render={() => (*/}
+                                {/*<Redirect to={'/home'}/>*/}
+                            {/*)}/>;*/}
+                        {/*}*/}
+                        {/*return <Route key={index} path={item.path} exact render={props =>*/}
+                            {/*!item.auth ? <item.component {...props} /> :*/}
+                                {/*token ? <item.component {...props} /> :*/}
+                                    {/*<Redirect to={{*/}
+                                        {/*pathname: '/login',*/}
+                                        {/*state: {from: props.location}*/}
+                                    {/*}}/>*/}
+                        {/*}/>;*/}
+                    {/*})}*/}
+                    <Route path="/" component={Container} />
+                    <Route path="/login" component={Login} />
                 </Switch>
 
             </Router>

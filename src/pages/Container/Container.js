@@ -3,6 +3,7 @@ import {Layout, Menu, Breadcrumb, Icon} from 'antd';
 import './styles.css';
 import Constants from '../../utils/Contstants';
 import Contents from "./Contents";
+import {Link} from "react-router-dom";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -28,13 +29,17 @@ class Container extends Component {
                 <Sider collapsible collapsed={this.state.collapsed} onCollapse={() => this.onCollapse()}>
                     <div className="logo"/>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1">
+                        <Menu.Item key="1" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                             <Icon type="pie-chart"/>
-                            <span>Option 1</span>
+                            <Link to={`/home`}>首页</Link>
                         </Menu.Item>
-                        <Menu.Item key="2">
+                        <Menu.Item key="2" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                             <Icon type="desktop"/>
-                            <span>Option 2</span>
+                            <Link style={{color: '#fff'}} to={`/user`}>用户</Link>
+                        </Menu.Item>
+                        <Menu.Item key="3" style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                            <Icon type="desktop"/>
+                            <Link to={`/about`}>关于</Link>
                         </Menu.Item>
                         <SubMenu
                             key="sub1"
