@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Icon, Input} from 'antd';
+import {Button, Icon, Input, message} from 'antd';
 import './styles.css';
 import {connect} from "react-redux";
 import * as loginAction from "../../redux/actions/loginAction";
@@ -18,10 +18,13 @@ class Login extends Component {
     }
 
     login = () => {
-        // let token = true;
-        let RedirectUrl = this.props.location.state ? this.props.location.state.from.pathname : '/';
-        this.props.login({userName: '123', password: '123'});
-        this.props.history.push(RedirectUrl);
+
+        let loginToUrl = this.props.location.fromPath ? this.props.location.fromPath : '/';
+        console.log('loginToUrl--->', loginToUrl);
+        // this.props.login({userName: '123', password: '123'});
+        window.localStorage.isLogin = '1';
+        message.success("登录成功！");
+        this.props.history.push(loginToUrl);
 
     };
 
@@ -31,7 +34,7 @@ class Login extends Component {
                 <div className='bg_modal'>
                     <div className='login_box'>
                         <h3>Login</h3>
-                        <h3>{this.props.userInfo.token && '已登录！'}</h3>
+                        {/*<h3>{this.props.userInfo.token && '已登录！'}</h3>*/}
                         <div className='line'/>
                         <div className='info_item'>
                             <Icon type={'user'} style={{fontSize: '24px', color: 'rgba(0,0,0,0.3)'}}/>
@@ -50,14 +53,16 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    userInfo: state.login
-});
+export default Login;
 
-const mapDispatchToProps = dispatch => ({
-    login: data => dispatch(loginAction.Login(data))
-});
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Login);
+// const mapStateToProps = state => ({
+//     userInfo: state.login
+// });
+//
+// const mapDispatchToProps = dispatch => ({
+//     login: data => dispatch(loginAction.Login(data))
+// });
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Login);
